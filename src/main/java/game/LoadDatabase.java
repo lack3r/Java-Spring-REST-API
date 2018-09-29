@@ -15,7 +15,7 @@ class LoadDatabase {
 								   GameInstanceRepository gameInstanceRepository) {
 		return args -> {
 			userRepository.save(new User("Yiannakis o Admin", "ADMIN"));
-			userRepository.save(new User("Andreas Mastrapaps", "NORMAL_USER"));
+			userRepository.save(new User("Andreas Mastrapas", "USER"));
 
 			userRepository.findAll().forEach(user -> {
 				log.info("Preloaded " + user);
