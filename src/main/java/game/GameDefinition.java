@@ -8,16 +8,14 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-class User {
+class GameDefinition {
 
 	private @Id @GeneratedValue Long id;
 	private String name;
-	private UserRole role;
-	private String username;
-	private String encodedPassword;
+	private String description;
 
-	User(String name, UserRole role) {
+	GameDefinition(String name, String description) {
 		this.name = name;
-		this.role = role;
+		this.description = description;
 	}
 }

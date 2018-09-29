@@ -12,10 +12,10 @@ class LoadDatabase {
 
 	@Bean
 	CommandLineRunner initDatabase(UserRepository userRepository,
-								   GameInstanceRepository gameInstanceRepository) {
+								   GameInstanceRepository gameInstanceRepository,GameDefinitionRepository gameDefinitionRepository) {
 		return args -> {
-			userRepository.save(new User("Yiannakis o Admin", "ADMIN"));
-			userRepository.save(new User("Andreas Mastrapas", "USER"));
+			userRepository.save(new User("Yiannakis o Admin", UserRole.ADMIN));
+			userRepository.save(new User("Andreas Mastrapas", UserRole.USER));
 
 			userRepository.findAll().forEach(user -> {
 				log.info("Preloaded " + user);
@@ -29,6 +29,13 @@ class LoadDatabase {
 				log.info("Preloaded " + gameInstance);
 			});
 			// end::gameInstance[]
+
+			gameDefinitionRepository.save(new GameDefinition("Tetris", "Tetris is a tile-matching puzzle video game"));
+			gameDefinitionRepository.save(new GameDefinition("Gradius", "Gradius is a series of shooter video games by Conami. ↑↑↓↓←→←→BA "));
+
+            gameDefinitionRepository.findAll().forEach(gameInstance -> {
+				log.info("Preloaded " + gameInstance);
+			});
 		};
 	}
 }
