@@ -23,12 +23,12 @@ public class User {
     private String name;
     private UserRole role;
     private String username;
-    private String encodedPassword;
+    private String password; // TODO this should be the encoded password
 
     public User(String name, String username, String password, UserRole role) {
         this.name = name;
         this.username = username;
-        this.encodedPassword = password;
+        this.password = password;
         this.role = role;
     }
 
@@ -45,7 +45,7 @@ public class User {
     }
 
     public String getPassword() {
-        return username;
+        return password;
     }
 
     public UserRole getRole() {
@@ -68,7 +68,7 @@ public class User {
         this.username = username;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
