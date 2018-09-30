@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // tag::main[]
 @RestController
-class GameInstanceController {
+public class GameInstanceController {
 
 	private final GameInstanceRepository gameInstanceRepository;
 	private final GameInstanceResourceAssembler assembler;

@@ -1,5 +1,6 @@
-package game;
+package game.GameDefinition;
 
+import game.GameInstanceResourceAssembler;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,13 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 // tag::constructor[]
 @RestController
-class GameDefinitionController {
+public class GameDefinitionController {
 
 	private final GameDefinitionRepository repository;
 
 	private final GameDefinitionResourceAssembler assembler;
 
-	GameDefinitionController(GameDefinitionRepository repository,
+	public GameDefinitionController(GameDefinitionRepository repository,
                              GameDefinitionResourceAssembler assembler,
                              GameInstanceResourceAssembler gameInstanceAssembler) {
 		
@@ -33,7 +34,7 @@ class GameDefinitionController {
 	// Aggregate root
 
 	@GetMapping("/gameDefinitions")
-	Resources<Resource<GameDefinition>> all() {
+	public Resources<Resource<GameDefinition>> all() {
 
 		List<Resource<GameDefinition>> gameDefinitions = repository.findAll().stream()
 			.map(assembler::toResource)
@@ -44,7 +45,7 @@ class GameDefinitionController {
 	}
 
 	@PostMapping("/gameDefinitions")
-	ResponseEntity<?> newGameDefinition(@RequestBody GameDefinition newGameDefinition) throws URISyntaxException {
+	public ResponseEntity<?> newGameDefinition(@RequestBody GameDefinition newGameDefinition) throws URISyntaxException {
 
 		Resource<GameDefinition> resource = assembler.toResource(repository.save(newGameDefinition));
 
@@ -56,7 +57,7 @@ class GameDefinitionController {
 	// Single item
 
 	@GetMapping("/gameDefinitions/{id}")
-	Resource<GameDefinition> one(@PathVariable Long id) {
+	public Resource<GameDefinition> one(@PathVariable Long id) {
 
 		GameDefinition gameDefinition = repository.findById(id)
 			.orElseThrow(() -> new GameDefinitionNotFoundException(id));
@@ -65,7 +66,7 @@ class GameDefinitionController {
 	}
 
 	@PutMapping("/gameDefinitions/{id}")
-	ResponseEntity<?> replaceGameDefinition(@RequestBody GameDefinition newGameDefinition, @PathVariable Long id) throws URISyntaxException {
+	public ResponseEntity<?> replaceGameDefinition(@RequestBody GameDefinition newGameDefinition, @PathVariable Long id) throws URISyntaxException {
 
 		GameDefinition updatedGameDefinition = repository.findById(id)
 			.map(gameDefinition -> {
@@ -87,7 +88,7 @@ class GameDefinitionController {
 	}
 
 	@DeleteMapping("/gameDefinitions/{id}")
-	ResponseEntity<?> deleteGameDefinition(@PathVariable Long id) {
+	public ResponseEntity<?> deleteGameDefinition(@PathVariable Long id) {
 
 		repository.deleteById(id);
 		

@@ -1,6 +1,6 @@
-package game;
+package game.GameDefinition;
 
-class GameDefinitionNotFoundException extends RuntimeException {
+public class GameDefinitionNotFoundException extends RuntimeException {
 
 	GameDefinitionNotFoundException(Long id) {
 		super("Could not find game definition with " + id);

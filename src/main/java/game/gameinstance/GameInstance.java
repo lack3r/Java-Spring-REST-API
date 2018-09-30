@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Table(name = "USER_GAME_INSTANCE")
-class GameInstance {
+public class GameInstance {
 
     private @Id
     @GeneratedValue

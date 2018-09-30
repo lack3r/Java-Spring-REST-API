@@ -1,4 +1,4 @@
-package game;
+package game.GameDefinition;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "GAME_DEFINITION")
-class GameDefinition {
+public class GameDefinition {
 
     // TODO maybe put these values in a properties file?
 
@@ -27,7 +27,7 @@ class GameDefinition {
 
     private String networkEnvironmentId;
 
-    GameDefinition(String name, int duration, String networkEnvironmentId) {
+    public GameDefinition(String name, int duration, String networkEnvironmentId) {
 
         if (!isDurationValid(duration))
             throw new IllegalArgumentException("duration can only be between " + MIN_DURATION + " minutes and " + MAX_DURATION + "minutes");

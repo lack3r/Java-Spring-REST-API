@@ -1,4 +1,4 @@
-package game;
+package game.GameDefinition;
 
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
@@ -8,7 +8,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @Component
-class GameDefinitionResourceAssembler implements ResourceAssembler<GameDefinition, Resource<GameDefinition>> {
+public class GameDefinitionResourceAssembler implements ResourceAssembler<GameDefinition, Resource<GameDefinition>> {
 
 	@Override
 	public Resource<GameDefinition> toResource(GameDefinition gameDefinition) {

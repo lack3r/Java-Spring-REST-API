@@ -1,6 +1,6 @@
 package game;
 
-enum GameInstanceState {
+public enum GameInstanceState {
 
 	CREATED_NOT_STARTED,
 	CREATED_STARTED,

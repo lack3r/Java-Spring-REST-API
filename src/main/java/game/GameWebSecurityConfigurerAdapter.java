@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
+    //TODO the access to each role should be granted properly
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

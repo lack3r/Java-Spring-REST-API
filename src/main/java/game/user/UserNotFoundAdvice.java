@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class GameDefinitionNotFoundAdvice {
+public class UserNotFoundAdvice {
 
 	@ResponseBody
-	@ExceptionHandler(GameDefinitionNotFoundException.class)
+	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String userNotFoundHandler(GameDefinitionNotFoundException ex) {
+	String userNotFoundHandler(UserNotFoundException ex) {
 		return ex.getMessage();
 	}
 }

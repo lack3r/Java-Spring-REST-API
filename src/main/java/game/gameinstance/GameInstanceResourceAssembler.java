@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 
 @Component
-class GameInstanceResourceAssembler implements ResourceAssembler<GameInstance, Resource<GameInstance>> {
+public class GameInstanceResourceAssembler implements ResourceAssembler<GameInstance, Resource<GameInstance>> {
 
 	@Override
 	public Resource<GameInstance> toResource(GameInstance gameInstance) {
