@@ -10,7 +10,7 @@
         <version>2.0.5.RELEASE</version>
     </parent>
 
-    <groupId>com.aloizou  </groupId>
+    <groupId>com.aloizou</groupId>
     <artifactId>rest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
