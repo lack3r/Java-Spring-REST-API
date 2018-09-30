@@ -70,7 +70,8 @@ class GameDefinitionController {
 		GameDefinition updatedGameDefinition = repository.findById(id)
 			.map(gameDefinition -> {
 				gameDefinition.setName(newGameDefinition.getName());
-				gameDefinition.setDescription(newGameDefinition.getDescription());
+				gameDefinition.setDuration(newGameDefinition.getDuration());
+				gameDefinition.setNetworkEnvironmentId(newGameDefinition.getNetworkEnvironmentId());
 				return repository.save(gameDefinition);
 			})
 			.orElseGet(() -> {

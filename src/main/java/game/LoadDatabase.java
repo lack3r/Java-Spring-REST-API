@@ -1,41 +1,49 @@
 package game;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * This class is responsible to create some basic dummy data in the database
+ */
 @Configuration
 @Slf4j
 class LoadDatabase {
 
-	@Bean
-	CommandLineRunner initDatabase(UserRepository userRepository,
-								   GameInstanceRepository gameInstanceRepository,GameDefinitionRepository gameDefinitionRepository) {
-		return args -> {
-			userRepository.save(new User("Yiannakis o Admin", UserRole.ADMIN));
-			userRepository.save(new User("Andreas Mastrapas", UserRole.USER));
+    @Bean
+    CommandLineRunner initDatabase(UserRepository userRepository,
+                                   GameInstanceRepository gameInstanceRepository, GameDefinitionRepository gameDefinitionRepository) {
 
-			userRepository.findAll().forEach(user -> {
-				log.info("Preloaded " + user);
-			});
+        return args -> {
 
-			// tag::gameInstance[]
-			gameInstanceRepository.save(new GameInstance("Leage of Legends", GameInstanceState.FINISHED_EXPIRED));
-			gameInstanceRepository.save(new GameInstance("World of Warcraft", GameInstanceState.CREATED_STARTED));
+            User admin = new User("Yiannakis o Admin", "admin", "admin", UserRole.ADMIN);
+            User normalUser = new User("Andreas Mastrapas", "user", "user", UserRole.USER);
 
-			gameInstanceRepository.findAll().forEach(gameInstance -> {
-				log.info("Preloaded " + gameInstance);
-			});
-			// end::gameInstance[]
+            userRepository.save(admin);
+            userRepository.save(normalUser);
 
-			gameDefinitionRepository.save(new GameDefinition("Tetris", "Tetris is a tile-matching puzzle video game"));
-			gameDefinitionRepository.save(new GameDefinition("Gradius", "Gradius is a series of shooter video games by Conami. ↑↑↓↓←→←→BA "));
+            printAllFromRepository(userRepository);
 
-            gameDefinitionRepository.findAll().forEach(gameInstance -> {
-				log.info("Preloaded " + gameInstance);
-			});
-		};
-	}
+            GameDefinition tetris = new GameDefinition("Tetris", 10, "YOLO_01");
+            GameDefinition gradius = new GameDefinition("Gradius - Conami ↑↑↓↓←→←→BA", 60, "DRY_SOLID_YAGNY");
+            gameDefinitionRepository.save(tetris);
+            gameDefinitionRepository.save(gradius);
+
+            printAllFromRepository(gameDefinitionRepository);
+
+            gameInstanceRepository.save(new GameInstance(normalUser.getId(), tetris.getId(), GameInstanceState.FINISHED_EXPIRED));
+            gameInstanceRepository.save(new GameInstance(normalUser.getId(), gradius.getId(), GameInstanceState.CREATED_STARTED));
+
+            printAllFromRepository(gameInstanceRepository);
+        };
+    }
+
+    private void printAllFromRepository(JpaRepository repository) {
+        repository.findAll().forEach(entity -> {
+            log.info("Preloaded " + entity);
+        });
+    }
 }

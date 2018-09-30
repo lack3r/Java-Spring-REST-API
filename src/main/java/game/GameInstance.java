@@ -12,14 +12,42 @@ import javax.persistence.Table;
 @Table(name = "USER_GAME_INSTANCE")
 class GameInstance {
 
-	private @Id @GeneratedValue Long id;
+    private @Id
+    @GeneratedValue
+    Long id;
 
-	private String description;
-	private GameInstanceState status;
+    private Long userId;
+    private Long gameDefinitionID;
+    private GameInstanceState status;
 
-	GameInstance(String description, GameInstanceState status) {
+    GameInstance(Long userId, Long gameDefinitionID, GameInstanceState status) {
 
-		this.description = description;
-		this.status = status;
-	}
+        this.userId = userId;
+        this.gameDefinitionID = gameDefinitionID;
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Long getGameDefinitionID() {
+        return gameDefinitionID;
+    }
+
+    public void setUserId() {
+        this.userId = userId;
+    }
+
+    public GameInstanceState getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameInstanceState status) {
+        this.status = status;
+    }
 }
