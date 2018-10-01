@@ -1,4 +1,4 @@
-package game;
+package game.user;
 
 import lombok.Data;
 

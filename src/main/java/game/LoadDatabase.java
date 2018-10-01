@@ -1,5 +1,8 @@
 package game;
 
+import game.gamedefinition.*;
+import game.gameinstance.*;
+import game.user.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -7,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * This class is responsible to create some basic dummy data in the database
+ * This class is responsible to insert some basic dummy data in the database
  */
 @Configuration
 @Slf4j
-class LoadDatabase {
+public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository,

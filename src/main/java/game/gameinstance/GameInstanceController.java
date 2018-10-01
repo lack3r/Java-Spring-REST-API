@@ -1,4 +1,4 @@
-package game;
+package game.gameinstance;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
@@ -26,7 +26,7 @@ public class GameInstanceController {
 	private final GameInstanceRepository gameInstanceRepository;
 	private final GameInstanceResourceAssembler assembler;
 
-	GameInstanceController(GameInstanceRepository gameInstanceRepository,
+	public GameInstanceController(GameInstanceRepository gameInstanceRepository,
 						   GameInstanceResourceAssembler assembler) {
 
 		this.gameInstanceRepository = gameInstanceRepository;
@@ -34,7 +34,7 @@ public class GameInstanceController {
 	}
 
 	@GetMapping("/gameInstances")
-	Resources<Resource<GameInstance>> all() {
+	public Resources<Resource<GameInstance>> all() {
 
 		List<Resource<GameInstance>> gameInstances = gameInstanceRepository.findAll().stream()
 			.map(assembler::toResource)
@@ -45,14 +45,14 @@ public class GameInstanceController {
 	}
 
 	@GetMapping("/gameInstances/{id}")
-	Resource<GameInstance> one(@PathVariable Long id) {
+	public Resource<GameInstance> one(@PathVariable Long id) {
 		return assembler.toResource(
 			gameInstanceRepository.findById(id)
 				.orElseThrow(() -> new GameInstanceNotFoundException(id)));
 	}
 
 	@PostMapping("/gameInstances")
-	ResponseEntity<Resource<GameInstance>> newGameInstance(@RequestBody GameInstance gameInstance) {
+	public ResponseEntity<Resource<GameInstance>> newGameInstance(@RequestBody GameInstance gameInstance) {
 
 		gameInstance.setStatus(GameInstanceState.CREATED_STARTED);
 		GameInstance newGameInstance = gameInstanceRepository.save(gameInstance);
@@ -65,7 +65,7 @@ public class GameInstanceController {
 	
 	// tag::delete[]
 	@DeleteMapping("/gameInstances/{id}/cancel")
-	ResponseEntity<ResourceSupport> cancel(@PathVariable Long id) {
+	public ResponseEntity<ResourceSupport> cancel(@PathVariable Long id) {
 
 		GameInstance gameInstance = gameInstanceRepository.findById(id).orElseThrow(() -> new GameInstanceNotFoundException(id));
 
@@ -82,7 +82,7 @@ public class GameInstanceController {
 
 	// tag::complete[]
 	@PutMapping("/gameInstances/{id}/complete")
-	ResponseEntity<ResourceSupport> complete(@PathVariable Long id) {
+	public ResponseEntity<ResourceSupport> complete(@PathVariable Long id) {
 		
 			GameInstance gameInstance = gameInstanceRepository.findById(id).orElseThrow(() -> new GameInstanceNotFoundException(id));
 

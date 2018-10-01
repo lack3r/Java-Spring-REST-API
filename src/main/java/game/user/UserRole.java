@@ -1,4 +1,4 @@
-package game;
+package game.user;
 
 /**
  * Enumeration responsible for the roles a user might have

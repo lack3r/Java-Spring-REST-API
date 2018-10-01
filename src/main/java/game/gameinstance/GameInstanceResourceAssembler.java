@@ -1,4 +1,4 @@
-package game;
+package game.gameinstance;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 

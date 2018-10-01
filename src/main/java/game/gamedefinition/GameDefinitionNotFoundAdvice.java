@@ -1,4 +1,4 @@
-package game.GameDefinition;
+package game.gamedefinition;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

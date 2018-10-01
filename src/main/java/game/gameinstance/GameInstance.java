@@ -1,4 +1,4 @@
-package game;
+package game.gameinstance;
 
 import lombok.Data;
 
@@ -20,7 +20,7 @@ public class GameInstance {
     private Long gameDefinitionID;
     private GameInstanceState status;
 
-    GameInstance(Long userId, Long gameDefinitionID, GameInstanceState status) {
+    public GameInstance(Long userId, Long gameDefinitionID, GameInstanceState status) {
 
         this.userId = userId;
         this.gameDefinitionID = gameDefinitionID;

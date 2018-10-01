@@ -1,6 +1,6 @@
-package game.GameDefinition;
+package game.gamedefinition;
 
-import game.GameInstanceResourceAssembler;
+import game.gameinstance.GameInstanceResourceAssembler;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;

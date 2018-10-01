@@ -1,4 +1,4 @@
-package game;
+package game.gameinstance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

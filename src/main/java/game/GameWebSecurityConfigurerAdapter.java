@@ -10,7 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
-public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
+public class GameWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
     //TODO the access to each role should be granted properly
     @Override
@@ -27,7 +27,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = passwordEncoder();
-        auth.inMemoryAuthentication().withUser("admin").password(encoder.encode("admin")).roles("USER","ADMIN").and()
+        auth.inMemoryAuthentication().withUser("admin").password(encoder.encode("admin")).roles("USER","ADMIN")
+                .and()
                 .withUser("user").password(encoder.encode("user")).roles("USER") ;
     }
 

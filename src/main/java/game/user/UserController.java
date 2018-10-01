@@ -1,4 +1,4 @@
-package game;
+package game.user;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import game.gameinstance.GameInstanceResourceAssembler;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class UserController {
 	private final UserResourceAssembler assembler;
 	private final GameInstanceResourceAssembler gameInstanceAssembler;
 
-	UserController(UserRepository repository,
+	public UserController(UserRepository repository,
 				   UserResourceAssembler assembler,
 				   GameInstanceResourceAssembler gameInstanceAssembler) {
 		
@@ -40,7 +41,7 @@ public class UserController {
 	// Aggregate root
 
 	@GetMapping("/users")
-	Resources<Resource<User>> all() {
+	public Resources<Resource<User>> all() {
 
 		List<Resource<User>> users = repository.findAll().stream()
 			.map(assembler::toResource)
@@ -51,7 +52,7 @@ public class UserController {
 	}
 
 	@PostMapping("/users")
-	ResponseEntity<?> newUser(@RequestBody User newUser) throws URISyntaxException {
+	public ResponseEntity<?> newUser(@RequestBody User newUser) throws URISyntaxException {
 
 		Resource<User> resource = assembler.toResource(repository.save(newUser));
 
@@ -63,7 +64,7 @@ public class UserController {
 	// Single item
 
 	@GetMapping("/users/{id}")
-	Resource<User> one(@PathVariable Long id) {
+	public Resource<User> one(@PathVariable Long id) {
 
 		User user = repository.findById(id)
 			.orElseThrow(() -> new UserNotFoundException(id));
@@ -72,7 +73,7 @@ public class UserController {
 	}
 
 	@PutMapping("/users/{id}")
-	ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) throws URISyntaxException {
+	public ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) throws URISyntaxException {
 
 		User updatedUser = repository.findById(id)
 			.map(user -> {
@@ -93,7 +94,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/users/{id}")
-	ResponseEntity<?> deleteUser(@PathVariable Long id) {
+	public ResponseEntity<?> deleteUser(@PathVariable Long id) {
 
 		repository.deleteById(id);
 		

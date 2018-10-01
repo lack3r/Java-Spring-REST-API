@@ -1,4 +1,4 @@
-package game.GameDefinition;
+package game.gamedefinition;
 
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
